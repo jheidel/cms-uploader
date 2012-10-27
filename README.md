@@ -45,7 +45,7 @@ cms-uploader needs your Cornell netid and password in order to log into CMS.
 There are three ways to do this.
 
  1. Change nothing. When you run cms-uploader, you will be prompted.
- 2. Generate a password file and specify it in cms-uploader.py
+ 2. Create a password file and specify it in cms-uploader.py (as described below)
  3. Add your netid and password to cms-uploader.py *(BAD PRACTICE)*
 
 ### Creating a password file
