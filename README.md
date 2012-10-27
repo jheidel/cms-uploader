@@ -107,8 +107,10 @@ A Fun Little Script
 Here's a bash script that automatically packs and uploads a typical git project every minute.
 (Useful for those last minute bug-fixes).
 
+Please be careful if you decide to use this script. I hold no responsibility
+for its correctness.
 
-Assuming the following hierarchy for this script
+Assuming the following hierarchy for this script:
 
  * git-project-directory/
   * .git/
