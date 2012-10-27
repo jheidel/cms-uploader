@@ -115,6 +115,9 @@ A Fun Little Script
 Here's a bash script that automatically packs and uploads a typical git project every minute.
 (Useful for those last minute bug-fixes).
 
+If you're really awesome, you can modify this script to take advantage of git hooks to 
+have your server automatically pack and submit the code whenever anyone pushes a change.
+
 Please be careful if you decide to use this script. I hold no responsibility
 for its correctness.
 
