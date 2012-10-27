@@ -27,7 +27,7 @@ Because working up until the last second is great fun.
 See README for usage details, or run with --help
 
 Disclaimer: I take no responsibility for your usage of this
-            program. Please don't blindly rely it. Double
+            program. Please don't blindly rely on it. Double
             check your uploads.
 
  - Jeff Heidel 2012
