@@ -101,20 +101,59 @@ Notice that we replace the second file with NULL. The number of files specified 
 number of files that the assignment expects. If we do not want to upload any of these files,
 we can use NULL to indicate which files to omit from the upload.
 
-A Fun Script
-------------
+A Fun Little Script
+-------------------
 
-Assuming the following hierarchy
+Here's a script that automatically packs and uploads a typical git project every minute.
+(Useful for those last minute bug-fixes).
 
- > git-project-directory
- > > .git
- > > code.h
- > > code.c
- > documentation
- > > documentation.tex
- > > documentation.pdf
+
+Assuming the following hierarchy for this script
+
+ * git-project-directory/
+  * .git/
+  * .gitignore
+  * code.h
+  * code.c
+ * documentation/
+  * documentation.tex
 
 
 ``` bash
-#!/bin/bash
+#!/bin/sh
+
+PROJECT_DIR="git-project-directory"
+ZIP_FILE="project3_submit.zip" #zip file name to upload to CMS
+ASSIGNMENT_ID=1089 #ID of the CMS assignment (see Basic Usage)
+PERIOD=60 #time in seconds between uploads
+
+while true
+do
+    
+    #Remove any existing zip files
+    rm $ZIP_FILE
+    
+    #Archive git project
+    cd $PROJECT_DIR
+    git archive --format=zip -o ../$ZIP_FILE master
+    cd ..
+    
+    #Delete any superfluous files from project zip
+    zip -d $ZIP_FILE .gitignore
+    
+    #Generate new documentation pdf and add to zip
+    cd documentation
+    pdflatex documentation.tex
+    zip -9 ../$ZIP_FILE documentation.pdf #add documenation to zip
+    cd ..
+    
+    #Upload to CMS!
+    cms-uploader.py --id=$ASSIGNMENT_ID $ZIP_FILE
+    
+    #Sleep until next iteration
+    sleep $PERIOD
+    
+done
+
+
 ```
