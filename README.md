@@ -1,8 +1,8 @@
 cms-uploader
 ========
 
-This application allows you to upload an assignment to CMS through the command line, 
-allowing for much faster uploads. This means you can submit work closer to the 
+This application allows you to upload an assignment to CMS through the command line,
+allowing for much faster uploads. This means you can submit work closer to the
 assignment deadline, and can spend less time fiddling around with files.
 
 The usual disclaimer:
@@ -24,7 +24,7 @@ This is used to enumate a users's clicks through the CMS system.
 
 [Installation Link](http://wwwsearch.sourceforge.net/mechanize/download.html)
 
-Download, extract, and install just like any other python library using: 
+Download, extract, and install just like any other python library using:
 ``` python setup.py install ```
 
 ### Argparse
@@ -33,7 +33,7 @@ of python. If you do not have it, see:
 
 [Installation Link](http://pypi.python.org/pypi/argparse)
 
-Download, extract, and install just like any other python library using: 
+Download, extract, and install just like any other python library using:
 ``` python setup.py install ```
 
 
@@ -87,7 +87,7 @@ Moreover, this assignment expects one file (there is one upload box).
 
 ### Uploading Multiple Files
 Suppose you want to upload the files `code.c` and `code.h` to assignment ID __1089__.
-Moreover, this assignment expects two files (there are two upload boxes), and 
+Moreover, this assignment expects two files (there are two upload boxes), and
 they are ordered such that `code.c` is the first box and `code.h` is the second.
 
 ```bash
@@ -99,7 +99,7 @@ boxes._
 
 ### Uploading only some files
 Suppose you want to upload the file `midpoint_check.zip` to assignment ID __1073__.
-Moreover, this assignment expects two files (there are two upload boxes), and 
+Moreover, this assignment expects two files (there are two upload boxes), and
 they are ordered such that `midpoint_submission.zip` is the first box and `final_submission.zip` is the second.
 
 ```bash
@@ -154,32 +154,32 @@ do
         echo "Deadline! Stopping upload."
         exit 0
     fi
-    
+
     echo "--- Starting pack and upload"
-    
+
     #Remove any existing zip files
     rm $ZIP_FILE
-    
+
     #Archive git project
     cd $PROJECT_DIR
     git archive --format=zip -o ../$ZIP_FILE master
     cd ..
-    
+
     #Delete any superfluous files from project zip
     zip -d $ZIP_FILE .gitignore
-    
+
     #Generate new documentation pdf and add to zip
     cd documentation
     pdflatex documentation.tex
     zip -9 ../$ZIP_FILE documentation.pdf #add documenation to zip
     cd ..
-    
+
     #Upload to CMS!
     cms-uploader.py --id=$ASSIGNMENT_ID $ZIP_FILE
-    
+
     #Sleep until next iteration
     echo "Sleeping until next iteration"
     sleep $PERIOD
-    
+
 done
 ```

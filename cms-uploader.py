@@ -27,7 +27,7 @@ Because working up until the last second is great fun.
 See README for usage details, or run with --help
 
 Disclaimer: I take no responsibility for your usage of this
-            program. Please don't blindly rely it. Double 
+            program. Please don't blindly rely it. Double
             check your uploads.
 
  - Jeff Heidel 2012
@@ -131,8 +131,8 @@ br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
 # User-Agent (fake agent to google-chrome linux x86_64)
 br.addheaders = [('User-agent','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11'),
                  ('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'),
-                 ('Accept-Encoding', 'deflate,sdch'),                  
-                 ('Accept-Language', 'en-US,en;q=0.8'),                     
+                 ('Accept-Encoding', 'deflate,sdch'),
+                 ('Accept-Language', 'en-US,en;q=0.8'),
                  ('Accept-Charset', 'ISO-8859-1,utf-8;q=0.7,*;q=0.3')]
 
 """
@@ -168,7 +168,7 @@ print "CMS login successful!"
 
 """
 Access assignment
-""" 
+"""
 
 print "Accessing CMS assignment %d..." % args["ASSIGNMENT_ID"]
 
@@ -199,7 +199,7 @@ if len(uploads) != len(files):
 
 #Attach all files
 for (fl, field) in zip(files, uploads):
-    
+
     if fl is None:
         continue
 
