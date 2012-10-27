@@ -104,7 +104,7 @@ we can use NULL to indicate which files to omit from the upload.
 A Fun Little Script
 -------------------
 
-Here's a script that automatically packs and uploads a typical git project every minute.
+Here's a bash script that automatically packs and uploads a typical git project every minute.
 (Useful for those last minute bug-fixes).
 
 
@@ -127,8 +127,22 @@ ZIP_FILE="project3_submit.zip" #zip file name to upload to CMS
 ASSIGNMENT_ID=1089 #ID of the CMS assignment (see Basic Usage)
 PERIOD=60 #time in seconds between uploads
 
+#Time to stop uploading
+STOP_HOUR = 23 #24 hour time
+STOP_MINUTE = 55
+#Known bug: Don't expect 12:05 AM to be after 11:59 PM.
+#Stop condition is met when both the hour and minute
+#exceeds the given stop hour and minute.
+
 while true
 do
+    #Check for stop condition
+    CUR_HOUR=`date +%H`
+    CUR_MIN=`date +%M`
+    if [ $CUR_HOUR > $STOP HOUR && $CUR_MIN > $STOP_MIN ]; then
+        echo "Deadline! Stopping periodic upload."
+        exit 0
+    fi
     
     #Remove any existing zip files
     rm $ZIP_FILE
@@ -154,6 +168,4 @@ do
     sleep $PERIOD
     
 done
-
-
 ```
