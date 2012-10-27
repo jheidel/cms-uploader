@@ -138,21 +138,24 @@ ASSIGNMENT_ID=1089 #ID of the CMS assignment (see Basic Usage)
 PERIOD=60 #time in seconds between uploads
 
 #Time to stop uploading
-STOP_HOUR = 23 #24 hour time
-STOP_MINUTE = 55
+STOP_HOUR=23 #24 hour time
+STOP_MINUTE=55
 #Known bug: Don't expect 12:05 AM to be after 11:59 PM.
 #Stop condition is met when both the hour and minute
 #exceeds the given stop hour and minute.
 
-while true
+while :
 do
     #Check for stop condition
     CUR_HOUR=`date +%H`
     CUR_MIN=`date +%M`
-    if [ $CUR_HOUR > $STOP HOUR && $CUR_MIN > $STOP_MIN ]; then
-        echo "Deadline! Stopping periodic upload."
+    if [ $CUR_HOUR -ge $STOP_HOUR -a $CUR_MIN -ge $STOP_MINUTE ]; then
+        echo "----"
+        echo "Deadline! Stopping upload."
         exit 0
     fi
+    
+    echo "--- Starting pack and upload"
     
     #Remove any existing zip files
     rm $ZIP_FILE
@@ -175,6 +178,7 @@ do
     cms-uploader.py --id=$ASSIGNMENT_ID $ZIP_FILE
     
     #Sleep until next iteration
+    echo "Sleeping until next iteration"
     sleep $PERIOD
     
 done
