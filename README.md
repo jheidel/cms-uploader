@@ -61,9 +61,45 @@ path here.
 Basic Usage
 -----------
 
-You can also run `./cms-uploader.py --help` to get info about usage.
+First, go to CMS in your browser and find your assignment. Notice the URL, for instance:
+
+https://cms.csuglab.cornell.edu/web/auth/?action=assignment&assignid=1089
+
+This URL contains an *assignid* field, in this example, __1089__.
+We need to pass this ID to cms-uploader so the files can be uploaded to the correct assignment.
 
 
+### Uploading a Single File
+Suppose you want to upload the file `project3_submit.zip` to assignment ID __1089__.
+Moreover, this assignment expects one file (there is one upload box).
+
+```bash
+./cms-uploader.py --id=1089 project3_submit.zip
+```
+
+### Uploading Multiple Files
+Suppose you want to upload the files `code.c` and `code.h` to assignment ID __1089__.
+Moreover, this assignment expects two files (there are two upload boxes), and 
+they are ordered such that `code.c` is the first box and `code.h` is the second.
+
+```bash
+./cms-uploader.py --id=1089 code.c code.h
+```
+
+_Note: the order you specify files is the order they are uploaded to the respective
+boxes._
+
+### Uploading only some files
+Suppose you want to upload the file `midpoint_check.zip` to assignment ID __1073__.
+Moreover, this assignment expects two files (there are two upload boxes), and 
+they are ordered such that `midpoint_submission.zip` is the first box and `final_submission.zip` is the second.
+
+```bash
+./cms-uploader.py --id=1073 midpoint_check.zip NULL
+```
+Notice that we replace the second file with NULL. The number of files specified must match up with the
+number of files that the assignment expects. If we do not want to upload any of these files,
+we can use NULL to indicate which files to omit from the upload.
 
 A Fun Script
 ------------
