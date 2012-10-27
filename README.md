@@ -110,7 +110,7 @@ Here's a bash script that automatically packs and uploads a typical git project 
 Please be careful if you decide to use this script. I hold no responsibility
 for its correctness.
 
-Assuming the following hierarchy for this script:
+Assuming the following hierarchy for this script (and that cms-uploader.py is placed in your working PATH):
 
  * git-project-directory/
   * .git/
