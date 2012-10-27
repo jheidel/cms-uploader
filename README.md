@@ -1,7 +1,7 @@
 cms-uploader
 ========
 
-This application allows you to upload an assignment to CMS through the command line,
+This application allows you to upload an assignment to Cornell CMS (Course Management System) through the command line,
 allowing for much faster uploads. This means you can submit work closer to the
 assignment deadline, and can spend less time fiddling around with files.
 
